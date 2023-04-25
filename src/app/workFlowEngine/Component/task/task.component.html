@@ -1,0 +1,115 @@
+<section class="content">
+  <h2 class="heading">Task</h2>
+</section>
+<div class="d-flex justify-content-between task-wrapper">
+  <div>
+    <label>Due Date</label>
+    <p>{{DueDate}}</p>
+  </div>
+  <div>
+    <label>Task Name</label>
+    <p>{{TaskName}}</p>
+  </div>
+  <div>
+    <label>Case ID</label>
+    <p>{{CaseId}}</p>
+  </div>
+  <div>
+    <label>Status</label>
+    <p>{{Status}}</p>
+  </div>
+  <div>
+    <label>Status Date</label>
+    <p>{{StatusDate}}</p>
+  </div>
+  <div>
+    <label>First Name</label>
+    <p>{{FirstName}}</p>
+  </div>
+  <div>
+    <label>Last Name</label>
+    <p>{{LastName}}</p>
+  </div>
+  <div>
+    <label>Amount</label>
+    <p>{{Amount}}</p>
+  </div>
+</div>
+<section class="content">
+  <div>
+  </div>
+  <div class="rule-button-container d-flex justify-content-between align-items-center">
+    <div>
+      <button class="btn reset-btn me-2">Menu</button>
+      <button class="btn reset-btn me-2">Assign</button>
+      <button class="btn reset-btn me-2">Claim</button>
+      <button class="btn reset-btn me-2">Release</button>
+      <button class="btn reset-btn me-2">Help</button>
+    </div>
+    <div>
+      <label class="d-block">My QuickQueries</label>
+      <select class="btn btn-Secondry">
+        <option value="0">--Select-</option>
+        <option value="0">Departmental WorkLoad</option>
+      </select>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-workflow-tab" data-bs-toggle="tab" data-bs-target="#nav-workflow"
+              type="button" role="tab">
+        Workflow Tasks(17)
+      </button>
+      <button class="nav-link " id="nav-document-tab" data-bs-toggle="tab" data-bs-target="#nav-document"
+              type="button" role="tab">
+        Document Review Tasks (10)
+      </button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-workflow">
+      <div class="overflowX">
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th><input type="checkbox" class="check-box"></th>
+              <th>DueDate</th>
+              <th>Task</th>
+              <th>Record Id</th>
+              <th>Record Type</th>
+              <th>Status</th>
+              <th>Status Date</th>
+              <th>Comments</th>
+
+            </tr>
+          </thead>
+          <tbody *ngIf="WorkFlowdata">
+            <tr *ngFor="let workdata of WorkFlowdata">
+              <td> <input type="checkbox" class="check-box" (click)="ViewTask(workdata.workFlowInstanceId)"></td>
+              <td>12/11/2023</td>
+              <td><a href="#" (click)="GetTaskdata(workdata.workFlowInstanceId)" [routerLink]="[ '/TaskDetail']">{{workdata.workFlowActivities[0].name}}</a></td>
+              <td>123</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!--<tr>
+              <td> <input type="checkbox" class="check-box" (click)="ViewTask(1234)"></td>
+              <td>12/11/2023</td>
+              <td>Task Test</td>
+              <td>4567</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</section>

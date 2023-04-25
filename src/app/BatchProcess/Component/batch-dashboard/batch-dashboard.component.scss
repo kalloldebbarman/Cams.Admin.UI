@@ -1,0 +1,84 @@
+
+.content {
+  margin: 20px 20px 20px;
+}
+
+.heading {
+  color: #4D4D4D;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.batch-data-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.batch-container {
+  box-shadow: 0px 2px 7px #00000017;
+  border: 1px solid #D8D8D8;
+  border-radius: 20px;
+  background: #ffff;
+  text-align: center;
+  padding: 15px 0;
+  width: 20%;
+  margin-right: 15px;
+  height: 146px;
+  cursor: pointer;
+}
+
+  .batch-container p {
+    font-size: 13px;
+    color: #4D4D4D;
+    font-weight: 600;
+  }
+
+  .batch-container h1 {
+    color: #4D4D4D;
+    font-size: 38px;
+  }
+
+.total-icon {
+  width: 82px;
+  height: 20px;
+}
+
+.data-sub {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4D4D4D;
+}
+
+.add-icon {
+  width: 39px;
+  height: 85px;
+}
+
+.status-wrapper {
+  box-shadow: 0px 2px 7px #00000017;
+  border: 1px solid #D8D8D8;
+  border-radius: 20px;
+  padding: 20px;
+  margin-right: 15px;
+}
+
+.status {
+  margin-right: 100px;
+}
+
+.status-wrapper p {
+  margin-bottom: 2px;
+  color: #8B8B8B;
+  font-size: 14px;
+}
+
+.status-wrapper h6 {
+  color: #1B1B1B;
+  font-size: 16px;
+}
+
+.nodeInfo-container {
+  padding-left: 41px;
+  border-left: 1px solid #D8D8D8;
+}

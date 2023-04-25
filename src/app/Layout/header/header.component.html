@@ -1,0 +1,24 @@
+<header>
+  <div class="dashboard-top-header">Cams Admin Portal</div>
+  <div class="d-flex">
+    <div>
+      <button (click)="toggleSideNav()" [ngClass]="{'menu-icon': showMenu, 'menu-close-icon': !showMenu}">
+        <img src="../../../assets/images/menu-icon.svg" class="menu-icon-img" *ngIf="showMenu">
+        <div class="menu-close-icon" *ngIf="!showMenu">
+          <img src="../../../assets/images/forward-white-icon.svg" class="menu-close-img">
+        </div>
+      </button>
+    </div>
+    <div class="dashboard-main-header">
+
+      <h2>CAMS <span class="case-abb">Case Management System</span></h2>
+
+      <div>
+        <img src="../assets/images/msg-icon.png" class="img-icon">
+        <img src="../assets/images/notification-img.png" class="img-icon">
+        <img src="../assets/images/profile-img.png" class="profile-img">
+        <app-login-logout-action></app-login-logout-action>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,90 @@
+<form [formGroup]>
+  <div
+    style="
+      border: 1px solid red;
+      margin: 10px 20px;
+      padding: 10px;
+      background: lightskyblue;
+    "
+  >
+    <p>
+      <strong>Batch Job-Detail</strong>
+    </p>
+    <p>
+      <strong>Use this form to edit Batch Job Attribute </strong>
+    </p>
+    <div>
+      <h4>
+        Batch Job Information
+        <button type="edit" class="btn btn-outline-primary">Edit Info</button>
+      </h4>
+    </div>
+    <div class="form-group">
+      <label for="batchJobName" class="col-form-label">Batch Job Name: </label>
+      <input
+        value="Job1"
+        disabled="true"
+        id="batchJobName"
+        class="form-control"
+      />
+    </div>
+    <div>
+      <label for="scriptCode" class="col-form-label">Script Code: </label>
+      <input
+        value="Code1"
+        disabled="true"
+        id="scriptCode"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-form-label">Description: </label>
+      <input
+        value="Job Description"
+        disabled="true"
+        id="description"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="status" class="col-form-label">Status: </label>
+      <input value="Status1" disabled="true" id="status" class="form-control" />
+    </div>
+    <br />
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Parameter Name</th>
+          <th>Description</th>
+          <th>Data Type</th>
+          <th>Required Flag</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="ms-3">
+                <p class="fw-bold mb-1">param1</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">Param1 of Job1</p>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">DT1</p>
+          </td>
+          <td><p class="fw-normal mb-1">RF1</p></td>
+          <td>
+            <p class="fw-normal mb-1">Active</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <button type="add" class="btn btn-outline-primary mx-1">Add</button>
+    <button type="cancel" class="btn btn-danger mx-1">Cancel</button>
+  </div>
+</form>

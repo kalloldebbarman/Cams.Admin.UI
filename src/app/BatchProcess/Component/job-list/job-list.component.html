@@ -1,0 +1,106 @@
+<!--<form>
+  <p>
+    <strong>Batch Job List</strong>
+  </p>
+  <table>
+    <tr>
+      <td>
+        <div class="input-group">
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <button type="button" class="btn btn-primary">search</button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button type="button" class="btn btn-default btn-sm mx-4">
+            <span class="glyphicon glyphicon-filter"></span> Filter
+          </button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary float-right"
+            (click)="Addjob()"
+          >
+            <span class="fa fa-plus"></span>New
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <div class="row" *ngIf="isAddJob != true">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>Class</th>
+            <th>Next Fire Date</th>
+            <th>History</th>
+            <th>Flags</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p class="fw-normal mb-1">Job1</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Critical1</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">quartzmin.DemoScheduler+DummyJob1</p>
+            </td>
+            <td><p class="fw-normal mb-1">12/31/22 18.05.00</p></td>
+            <td>
+              <p class="fw-normal mb-1">hist1</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">flag1</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="fw-normal mb-1">Job2</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Critical2</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">quartzmin.DemoScheduler+DummyJob2</p>
+            </td>
+            <td><p class="fw-normal mb-1">19/01/23 18.05.00</p></td>
+            <td>
+              <p class="fw-normal mb-1">hist2</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">flag2</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br />
+  <app-create-job *ngIf="isAddJob"></app-create-job>
+</form>-->
+<section class="content">
+  <div class="d-flex justify-content-between align-items-center">
+    <h5 class="heading"><img src="../../../../assets/images/forward-icon.svg"> Total Jobs</h5>
+    <button class="create-btn">+ Create Job</button>
+  </div>
+  <div>
+    <img src="../../../../assets/images/table-data.png" style="width:100%; height:100%">
+  </div>
+</section>

@@ -1,0 +1,69 @@
+<section class="content">
+  <h5 class="heading">SMTP</h5>
+  <p class="smtp-content">
+    The outgoing SMTP mail server settings are used to allow FusionAuth to send mails
+  </p>
+  <form [formGroup]="SmtpForms" (ngSubmit)="onSubmit()">
+    <div class="smtp-wrapper">
+      <div class="smtp-container">
+        <label class="required">Host</label>
+        <input type="text" class="text-box" formControlName="host">
+        <div *ngIf="SmtpForms.controls['host'].invalid && (SmtpForms.controls['host'].dirty || SmtpForms.controls['host'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['host'].errors.required">
+            Host is required
+          </div>
+        </div>
+      </div>
+      <div class="smtp-container">
+        <label class="required">Port</label>
+        <input type="text" class="text-box" formControlName="port">
+        <div *ngIf="SmtpForms.controls['port'].invalid && (SmtpForms.controls['port'].dirty || SmtpForms.controls['port'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['port'].errors.required">
+            Port is required
+          </div>
+        </div>
+      </div>
+      <div class="smtp-container">
+        <label class="required">User Name</label>
+        <input type="text" class="text-box" formControlName="userName">
+        <div *ngIf="SmtpForms.controls['userName'].invalid && (SmtpForms.controls['userName'].dirty || SmtpForms.controls['userName'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['userName'].errors.required">
+            Username is required
+          </div>
+        </div>
+      </div>
+      <div class="smtp-container">
+        <label class="required">Password</label>
+        <input type="text" class="text-box" formControlName="password">
+        <div *ngIf="SmtpForms.controls['password'].invalid && (SmtpForms.controls['password'].dirty || SmtpForms.controls['password'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['password'].errors.required">
+            Password is required
+          </div>
+        </div>
+      </div>
+      <div class="smtp-container">
+        <label class="required">Security</label>
+        <select formControlName="security">
+          <option>TLS</option>
+        </select>
+        <div *ngIf="SmtpForms.controls['security'].invalid && (SmtpForms.controls['security'].dirty || SmtpForms.controls['security'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['security'].errors.required">
+            Security is required
+          </div>
+        </div>
+      </div>
+      <div class="smtp-container">
+        <label class="required">Sender Address</label>
+        <input type="email" class="text-box" formControlName="senderAddress">
+        <div *ngIf="SmtpForms.controls['senderAddress'].invalid && (SmtpForms.controls['senderAddress'].dirty || SmtpForms.controls['senderAddress'].touched)" class="alert alert-danger">
+          <div *ngIf="SmtpForms.controls['senderAddress'].errors.required">
+            Default From Address is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="SmtpForms.invalid" class="progress-btn">Save</button>
+  </form>
+
+
+</section>

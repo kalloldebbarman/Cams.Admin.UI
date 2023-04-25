@@ -1,0 +1,108 @@
+<form>
+  <p>
+    <strong>Triggers list</strong>
+  </p>
+
+  <table>
+    <tr>
+      <td>
+        <div class="input-group">
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <button type="button" class="btn btn-primary">search</button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button type="button" class="btn btn-default btn-sm mx-4">
+            <span class="glyphicon glyphicon-filter"></span> Filter
+          </button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button type="button" class="btn btn-primary" (click)="Addtrigger()">
+            <span class="fa fa-plus"></span>New
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <div class="row" *ngIf="isAddtrigger != true">
+    <div class="col-12">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>Schedule</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Last Fire Time</th>
+            <th>Next Fire Time</th>
+            <th>History</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p class="fw-normal mb-1">Job1</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Critical1</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">quartzmin.DemoScheduler+DummyJob1</p>
+            </td>
+            <td><p class="fw-normal mb-1">12/31/22 18.05.00</p></td>
+            <td>
+              <p class="fw-normal mb-1">N/A</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">12/29/22 18.05.00</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">01/03/23 18.05.00</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Hist1</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="fw-normal mb-1">Job2</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Critical2</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">quartzmin.DemoScheduler+DummyJob2</p>
+            </td>
+            <td><p class="fw-normal mb-1">19/01/23 18.05.00</p></td>
+            <td>
+              <p class="fw-normal mb-1">N/A</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">17/01/23 18.05.00</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">21/01/23 18.05.00</p>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">Hist2</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br />
+  <app-create-trigger *ngIf="isAddtrigger"></app-create-trigger>
+</form>

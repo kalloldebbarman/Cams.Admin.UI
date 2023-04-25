@@ -1,0 +1,42 @@
+
+// @import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+$primary: #5831b3;
+$secondary: #c4d748;
+$danger: #dd0000;
+$success: lime;
+$warning: orange;
+$accent: orange;
+$info: #444f48;;
+$default: rgb(160, 190, 174);
+$background-color: #8bb49b;
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  accent:$accent,
+  danger:$danger,
+  info:$info,
+  warning: $warning,
+  default: $default,
+  alert-border-color: $primary,
+  alert-bg: $background-color
+);
+
+$body-bg: #f3f3f0;
+$link-color: green;
+$alert-color: #006650;
+$alert-bg-color: #69a78b;
+$alert-border-color: #8bb49b;
+$badge-color: get-theme-color("primary");
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootswatch/dist/united/bootswatch";
+@import "../../node_modules/bootswatch/dist/united/variables";
+@function get-theme-color($key) {
+  @return map-get($theme-colors, $key);
+}

@@ -1,0 +1,185 @@
+.rule-wrapper {
+  display: flex;
+  /*  align-items: center;*/
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* 
+label {
+  color: #4D4D4D;
+  font-size: 14px;
+  margin-right: 20px;
+  font-weight: 500;
+} */
+
+
+.text-box {
+  display: block;
+  border: 1px solid #B4B4B4;
+  border-radius: 4px;
+  width: 100%;
+  height: 34px;
+  margin-right: 15px
+}
+
+.col-md-2 {
+  padding-right: 0;
+}
+
+select {
+  display: block;
+  text-align: left !important;
+  border: 1px solid #00000029 !important;
+  text-align: left;
+  border: 1px solid #B4B4B4;
+  border-radius: 4px;
+  width: 100%;
+  height: 34px;
+  margin-right: 10px;
+  padding: 4px 4px 5px 5px;
+  font-size: 14px;
+  color: #434343;
+}
+
+.text-checkbox {
+  display: block;
+  margin: 10px 0px 10px;
+}
+
+.delete-wrapper {
+  align-self: baseline;
+  margin: 0px 20px;
+  height: 34px;
+}
+
+.remove {
+  display: block;
+  margin: 10px;
+}
+
+.rule-flow-heading {
+  color: #4D4D4D;
+  font-size: 15px;
+}
+
+.add-rule-wrapper {
+  border: 1px solid #BFBFBF;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.rule-btn {
+  background: #90A2B4;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.close-toggle {
+  font-size: 30px;
+  color: #4D4D4D;
+  margin: 0px 15px 13px;
+}
+
+.rule-heading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.modal-body {
+  background: #e5e5e563;
+  padding: 20px 15px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+}
+
+.modal-content {
+  padding: 0px 10px;
+}
+
+.modal-footer {
+  margin-bottom: 15px;
+}
+
+.add-exp {
+  font-size: 12px;
+  font-family: "robotoregular";
+  border: 0px;
+  background: #ffff;
+  text-decoration: underline;
+  color: blue;
+}
+
+.btn-close {
+  font-size: 13px;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-10 {
+  width: 13%;
+  margin-bottom: 3px;
+}
+
+.margin-b {
+  margin-bottom: 3px;
+}
+
+.modal-dialog {
+  max-width: 65%;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-form-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  div {
+    width: 30%;
+  }
+}
+
+.add-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: initial;
+  border: 2px solid #3B9F6B;
+  text-align: center;
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.row .col-lg-2 {
+  @media screen and (max-width:1200px) {
+    width: 20%;
+  }
+
+  @media screen and (max-width:1050px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width:992px) {
+    width: 30%;
+  }
+
+  @media screen and (max-width:870px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width:767px) {
+    width: 100%;
+  }
+}

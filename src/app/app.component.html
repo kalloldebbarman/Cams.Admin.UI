@@ -1,0 +1,24 @@
+<div class="wrapper">
+
+  <!--<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="assets/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>-->
+  <app-header (onToggleSideNav)='sideNavToggler()'></app-header>
+
+
+  
+
+  <div class="content-wrapper">
+    <app-side-nav [isExpanded]='sideNavOpen'></app-side-nav>
+    <div class="left-nav-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!--Right Menu nav-->
+  <app-right-menu></app-right-menu>
+
+  <!-- End Right Menu nav-->
+  <app-footer></app-footer>
+</div>
+<!--<router-outlet></router-outlet>-->

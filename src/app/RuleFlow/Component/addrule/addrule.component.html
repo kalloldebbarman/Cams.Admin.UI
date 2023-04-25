@@ -1,0 +1,173 @@
+<form [formGroup]="rulecontrol">
+  <div class="add-rule-wrapper mb-2">
+    <div class="rule-heading-wrapper">
+      <h4 class="rule-flow-heading"></h4>
+      <div class="close-toggle">-</div>
+    </div>
+    <div class="rule-wrapper row" *ngIf="sections">
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+        <label class="required">RuleName</label>
+        <input type="text" class="text-box" formControlName="RuleName" />
+        <div *ngIf="sections.controls[sectionIndex].get('RuleName').invalid && (sections.controls[sectionIndex].get('RuleName').dirty || sections.controls[sectionIndex].get('RuleName').touched)" class="alert alert-danger">
+          <div *ngIf="sections.controls[sectionIndex].get('RuleName').errors.required">
+            Enter Rule Name
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+        <label class="required">Operator</label>
+        <select formControlName="Operator">
+          <option value="And">And</option>
+          <option value="AndAlso">AndAlso</option>
+          <option value="Or">Or</option>
+          <option value="OrElse">OrElse</option>
+          <!-- <option *ngFor="let com of masterdata.communicationType" [selected]="com.communicationTypeId === this.communicationTypeId" [value]="com.communicationTypeId">{{com.communicationTypeName}}</option>-->
+        </select>
+        <div *ngIf="sections.controls[sectionIndex].get('Operator').invalid && (sections.controls[sectionIndex].get('Operator').dirty || sections.controls[sectionIndex].get('Operator').touched)" class="alert alert-danger">
+          <div *ngIf="sections.controls[sectionIndex].get('Operator').errors.required">
+            Select Operator
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+        <label class="required">SuccessEvent</label>
+        <input type="text" class="text-box" formControlName="SuccessEvent" />
+        <div *ngIf="sections.controls[sectionIndex].get('SuccessEvent').invalid &&(sections.controls[sectionIndex].get('SuccessEvent').dirty || sections.controls[sectionIndex].get('SuccessEvent').touched)" class="alert alert-danger">
+          <div *ngIf="sections.controls[sectionIndex].get('SuccessEvent').errors.required">
+            Enter Success Event
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+        <label class="required">ErrorMessage</label>
+        <input type="text" class="text-box" formControlName="ErrorMessage" />
+        <div *ngIf="sections.controls[sectionIndex].get('ErrorMessage').invalid && (sections.controls[sectionIndex].get('ErrorMessage').dirty || sections.controls[sectionIndex].get('ErrorMessage').touched)" class="alert alert-danger">
+          <div *ngIf="sections.controls[sectionIndex].get('ErrorMessage').errors.required">
+            Enter ErrorMessage
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+        <div class="d-flex justify-content-between">
+          <label>Expression</label>
+          <button (click)="openPopup(sections.controls[sectionIndex].get('ExpressionJson').value)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-exp">+Add Expression</button>
+        </div>
+        <!--<input type="text" class="text-box" formControlName="Expression" />-->
+        <textarea class="form-control" formControlName="Expression"></textarea>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <label>Enable</label>
+        <input type="checkbox" class="text-checkbox" formControlName="Enabled" />
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <label>Delete</label>
+        <img src="../../../../assets/images/delete-icon.svg" class="remove" (click)="removeRule()">
+      </div>
+
+    </div>
+
+
+    <div formArrayName="Rules" class="sections">
+      <div *ngFor="let rulecontrol of GetRuleArray().controls; let RuleIndex=index">
+        <app-addrule [formGroupName]="RuleIndex" [sections]="GetRuleArray()" [rulecontrol]="rulecontrol" [newRuleForm]="newRuleForm" [sectionIndex]="RuleIndex" [catIndex]="catIndex" [NewLocalParamsForm]="NewLocalParamsForm"></app-addrule>
+
+      </div>
+    </div>
+    <div>
+
+      <button class="btn rule-btn" type="button" (click)="addNewRule()">+&nbsp;Rule</button>
+      <button class="btn rule-btn" type="button" (click)="addLocalParams()">+&nbsp;Local params</button>
+      <!--<h5>Rule</h5>
+      <button class="btn" type="button" (click)="addNewRule()">Add Rule</button>-->
+    </div>
+
+    <!--<div>
+      <h5>Local Param</h5>
+      <button class="btn" type="button" (click)="addLocalParams()">Add LocalParam</button>
+    </div>-->
+    <div formArrayName="LocalParams">
+      <div *ngFor="let localpara of newlocalparam().controls; let localIndex=index">
+        <app-local-param [formGroupName]="localIndex" [newlocalparam]="newlocalparam()" [localpara]="localpara" [LocalIndex]="localIndex"></app-local-param>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+<div class="modal" [ngStyle]="{'display':displayStyle}" id="exampleModal">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center pb-0">
+        <button type="button" (click)="closePopup()" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h5 class="heading text-center pb-0 mb-0">Add Expressions</h5>
+      <!--<div class="text-end">
+        <button class="progress-btn me-0 mb-2" (click)="AddExpression()">+ Create Expression</button>
+      </div>-->
+      <div class="modal-body">
+        <h5 class="heading mt-2">Expression</h5>
+
+        <form [formGroup]="ExpressionForm">
+          <div formArrayName="Expression" *ngFor="let category of ExpressionControl().controls; let catIndex=index">
+            <div [formGroupName]="catIndex" class="d-flex justify-content-between align-items-center expression-container">
+              <div class="me-2 w-30">
+                <!--<label>Expression Name</label>-->
+                <input type="text" class="text-box" placeholder="input1/input2" formControlName="InputName">
+              </div>
+              <div class="me-2 w-30">
+                <!--<label>ID</label>-->
+                <input type="text" class="text-box" placeholder="parameter" formControlName="Parameter">
+              </div>
+              <div class="me-2 w-30">
+                <!--<label>Between</label>-->
+                <!--<input type="text" class="text-box" placeholder="operator">-->
+                <select class="text-box" formControlName="Operator" (change)="GetOperator($event)">
+                  <option value="" selected>--Operator--</option>
+                  <option value="=">=</option>
+                  <option value=">">></option>
+                  <option value="<"><</option>
+                  <option value="Between">Between</option>
+                </select>
+              </div>
+              <div class="me-2 w-33">
+                <!--<label>Label number</label>-->
+                <input type="text" class="text-box" placeholder="value1" formControlName="Value1">
+              </div>
+              <div class="me-2 w-33" *ngIf="opertor=='Between'">
+                <!--<label>Label Number</label>-->
+                <input type="text" class="text-box" placeholder="value2" formControlName="Value2">
+              </div>
+              <div class="me-2 w-10">
+                <!--<label></label>-->
+                <!--<input type="text" class="text-box ">-->
+                <select class="text-box" formControlName="AndOr">
+                  <option value=" " selected></option>
+                  <option value="And">AND</option>
+                  <option value="Or">OR</option>
+                </select>
+              </div>
+              <div>
+                <!--<label>Delete</label>-->
+                <span class=" fa fa-plus" (click)="AddExpression()"></span>
+              </div>
+              <div>
+                <!--<label>Delete</label>-->
+                <img src="../../../../assets/images/delete-icon.svg" class="remove" (click)="removeExpression(catIndex)">
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button type="button" class="progress-btn" (click)="SaveExpression()">Save</button>
+      </div>
+
+      <!--<div class="json-wrapper">
+        <div><pre>{{this.ExpressionForm.value | json}}</pre></div>
+      </div>-->
+    </div>
+  </div>
+</div>

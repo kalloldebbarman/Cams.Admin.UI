@@ -1,0 +1,159 @@
+
+<section class="content">
+  <h5 class="heading">Coded Values</h5>
+
+  <form [formGroup]="CodedValueForm" (ngSubmit)="onSubmit()">
+    <div class="codedvalue-wrapper mb-2">
+      <div class="codedvalue-section">
+        <label class="required">Description</label>
+        <input type="text" class="text-box" formControlName="description" />
+        <div *ngIf="CodedValueForm.controls['description'].invalid && (CodedValueForm.controls['description'].dirty || CodedValueForm.controls['description'].touched)" class="alert alert-danger">
+          <div *ngIf="CodedValueForm.controls['description'].errors.required">
+            Description is required
+          </div>
+        </div>
+      </div>
+      <div class="codedvalue-section">
+        <label class="required">Short Description</label>
+        <input type="text" class="text-box" formControlName="shortDescription" />
+        <div *ngIf="CodedValueForm.controls['shortDescription'].invalid && (CodedValueForm.controls['shortDescription'].dirty || CodedValueForm.controls['shortDescription'].touched)" class="alert alert-danger">
+          <div *ngIf="CodedValueForm.controls['shortDescription'].errors.required">
+            Short Description is required
+          </div>
+        </div>
+      </div>
+      <div class="codedvalue-section">
+        <label>Effective Date</label>
+        <input type="date" class="text-box" formControlName="effectiveDate" />
+        <div *ngIf="CodedValueForm.controls['effectiveDate'].invalid && (CodedValueForm.controls['effectiveDate'].dirty || CodedValueForm.controls['effectiveDate'].touched)" class="alert alert-danger">
+          <div *ngIf="CodedValueForm.controls['effectiveDate'].errors.required">
+            Effective Date is required
+          </div>
+        </div>
+      </div>
+      <div class="codedvalue-section">
+        <label>Expiry Date</label>
+        <input type="date" class="text-box" formControlName="expiryDate" />
+        <div *ngIf="CodedValueForm.controls['expiryDate'].invalid && (CodedValueForm.controls['expiryDate'].dirty || CodedValueForm.controls['expiryDate'].touched)" class="alert alert-danger">
+          <div *ngIf="CodedValueForm.controls['expiryDate'].errors.required">
+            Expiry Date is required
+          </div>
+        </div>
+      </div>
+      <div class="codedvalue-section">
+        <label class="required">Sort By</label>
+        <input type="number" class="text-box" formControlName="sortBy" />
+        <div *ngIf="CodedValueForm.controls['sortBy'].invalid && (CodedValueForm.controls['sortBy'].dirty || CodedValueForm.controls['sortBy'].touched)" class="alert alert-danger">
+          <div *ngIf="CodedValueForm.controls['sortBy'].errors.required">
+            Sort By is required
+          </div>
+        </div>
+      </div>
+      <div class="codedvalue-section">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" formControlName="active" id="active" checked>
+          <label class="form-check-label">
+            Active
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn progress-btn">Save</button>
+    </div>
+  </form>
+  <div class="communication-section">
+    <label>Lookup Type</label>
+    <select class="text-box" name="lookup" #lookup (change)="onLookupTypeChange(lookup.value)">
+      <option *ngFor="let rec of lookupList" value="{{rec.name}}">{{rec.name}}</option>
+
+    </select>
+  </div>
+  <div class="codedvalue-section mt-2">
+    <input type="text" class="text-box" placeholder="Search" #search (change)="onSearchChange(search.value)">
+  </div>
+  <div class="overflowX">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Short Description</th>
+          <th>Sort By</th>
+          <th>Active</th>
+          <th>Effective Date</th>
+          <th>Expiry Date</th>
+          <th>Created By</th>
+          <th>Created Date</th>
+          <th>Modified By</th>
+          <th>Modified Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="lookupCodedValue">
+        <tr *ngFor="let temp of lookupCodedValue.codedValues">
+          <td>{{temp.description}}</td>
+          <td>{{temp.shortDescription}}</td>
+          <td>{{temp.sortBy}}</td>
+          <td><input class="form-check-input" type="checkbox" id="activeInactive" disabled checked={{temp.active}}></td>
+          <td>{{temp.effectiveDate}}</td>
+          <td>{{temp.expiryDate}}</td>
+          <td>{{temp.createdBy}}</td>
+          <td>{{temp.createdDate}}</td>
+          <td>{{temp.modifiedBy}}</td>
+          <td>{{temp.modifiedDate}}</td>
+          <td>
+            <img src="../../../assets/images/edit-icon.svg"  class="edit-icon img-icon" (click)="EditCodedValue(temp.codedValueId)" data-bs-toggle="modal" data-bs-target="#editModal">
+            <img src="../../../assets/images/delete-icon.svg"  class="delete-icon img-icon" (click)="DeleteCodedValue(temp.codedValueId)" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="lookupCodedValue.total; else nodataview" class="pagination">
+    <div class="input-group input-group-sm ">
+      <label class="col-form-label col-form-label-sm pagination-content">Rows Per Page</label>
+      <div class="input-group-append">
+        <select class="selectpicker show-menu-arrow col-form-label col-form-label-sm pagination-select" #records (change)="onRecordPerPageChange(records.value)">
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+        </select>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="renderPage($event)" id="server"></pagination-controls>
+  </div>
+  <ng-template #nodataview>
+    <img src="../../../assets/images/close-red-icon.svg" class="close-red-icon" />
+    <div class="no-data-text">
+      <p>Nothing to see here.</p>
+    </div>
+    <hr />
+  </ng-template>
+</section>
+<div class="modal" id="editModal" tabindex="-1" [ngStyle]="{ display: displayStyle }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <img src="../../../../assets/images/warning-img.svg" class="warning-img">
+      </div>
+      <p class="mb-0 pt-2"> Are you sure, do you want to Edit?</p>
+      <div class="modal-footer">
+        <button type="button" class="btn progress-btn" data-bs-dismiss="modal" (click)="ConfirmEditCodedValue()">Yes</button>
+        <button type="button" class="btn reset-btn" data-bs-dismiss="modal" (click)="closePopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="deleteModal" tabindex="-1" [ngStyle]="{ display: displayStyle }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <img src="../../../../assets/images/warning-img.svg" class="warning-img">
+      </div>
+      <p class="mb-0 pt-2"> Are you sure, do you want to Delete?</p>
+      <div class="modal-footer">
+        <button type="button" class="btn progress-btn" data-bs-dismiss="modal" (click)="ConfirmDeleteCodedValue()">Yes</button>
+        <button type="button" class="btn reset-btn" data-bs-dismiss="modal" (click)="closePopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

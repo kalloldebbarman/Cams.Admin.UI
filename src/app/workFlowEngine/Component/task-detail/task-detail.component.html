@@ -1,0 +1,161 @@
+<section class="content">
+  <div class="d-flex align-items-center">
+    <img src="../../../../assets/images/forward-icon.svg" class=" arrow-icon me-2 align-self-start">
+    <div>
+      <h2 class="heading m-0 pb-0"> Task Detail</h2>
+      <p class="record-sub">Record ID 121H25-00000-001CQ</p>
+    </div>
+  </div>
+  <div class="task-button-container">
+    <button class="outline-btn me-2" type="button" (click)="SubmitTaskDetail()" [disabled]="IsSubmit">Submit</button>
+    <button class="outline-btn me-2">Assign</button>
+    <button class="outline-btn me-2">Reset</button>
+    <button class="outline-btn me-2">Calculate Hours</button>
+    <button class="outline-btn me-2">Cancel</button>
+    <button class="outline-btn me-2">Help</button>
+  </div>
+  <div class="mt-2">
+    <nav>
+      <ul class="nav nav-tabs" id="mytaskTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="workflow-tab" data-bs-toggle="tab" data-bs-target="#workflow"
+                  role="tab">
+            Task Details
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="document-tab" data-bs-toggle="tab" data-bs-target="#document"
+                  role="tab">
+            Document
+            Sub Tasks (0)
+          </button>
+        </li>
+
+      </ul>
+    </nav>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="workflow" role="tabpanel">
+        <div class="task-detail-wrapper">
+          <div class="task-details-left-panel">
+            <!--<ul *ngIf="showMenu">
+            <li *ngFor="let taskList of workflowdata.workFlowActivities" (click)="clickEvent(taskList.name)">
+              <div class="d-flex justify-content-between align-items-center"  [ngClass]="status ? 'active' : ''">
+                {{taskList.displayName}}
+                <img src="../../../../assets/images/expand-left.svg">
+              </div>-->
+            <!--<div>
+              <ul class="border-0">
+                <li  class="border-0">Sub menu</li>
+
+              </ul>
+            </div>-->
+            <!--</li>
+            </ul>-->
+            <ul *ngIf="showMenu && workflowdata">
+              <li *ngFor="let taskList of workflowdata.workFlowActivities; let i = index;" (click)="clickEvent(i,taskList.name)"
+                  class="d-flex justify-content-between align-items-center"
+                  [ngClass]="{'active': selectedIndex === i,'disabled':taskList.name.trim().toLowerCase() != upcomingTaskName.trim().toLowerCase()}">
+                {{taskList.displayName}}
+                <!--<img src="../../../../assets/images/expand-left.svg">-->
+              </li>
+            </ul>
+            <div class="menu-button" (click)="menuClick()" [ngClass]="showMenu ? 'menu-right' : 'menu-left'">
+              Menu
+            </div>
+          </div>
+          <div class="task-details-right-panel" [formGroup]="TaskDetailForms">
+            <h2 class="heading">DPQA Review</h2>
+            <div class="row">
+              <div class="col-4">
+                <label>Action By Department</label>
+                <select formControlName="ActionByDept">
+                  <option value="0">--Select--</option>
+                  <option value="Department1">Department1</option>
+                  <option value="Department2">Department2</option>
+                  <!--<option *ngFor="let status of taskstatus" value="{{status.name}}">{{status.name}}</option>-->
+                </select>
+                <!--<input type="text" class="text-box" formControlName="ActionByDept">-->
+                <a href="#">Current Department</a>
+              </div>
+              <div class="col-4">
+                <label>Action By</label>
+                <select formControlName="ActionBy">
+                  <option value="0">--Select--</option>
+                  <option value="Anurag">Anurag</option>
+                  <option value="Kallol">Kallol</option>
+                  <!--<option *ngFor="let status of taskstatus" value="{{status.name}}">{{status.name}}</option>-->
+                </select>
+                <!--<input type="text" class="text-box" formControlName="ActionBy">-->
+                <a href="#"> Current User</a>
+              </div>
+              <!--<div class="col-4">
+                <label>New Status</label>
+                <input type="text" class="text-box">
+                <a href="#"> Current Department</a>
+              </div>-->
+              <!--<select class="col-4" (change)="onChangeRuleFlow($event.target.value)">-->
+              <div class="col-4">
+                <label>New Status</label>
+                <select  formControlName="Status">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let status of taskstatus" value="{{status.name}}">{{status.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="my-4">
+              <div class="d-flex justify-content-between">
+                <label class="d-block">Comments</label>
+                <a href="#">Standarad Comment</a>
+              </div>
+              <textarea class="comments-section" formControlName="Comments"></textarea>
+            </div>
+            <h2 class="heading">Comment Display In ACA</h2>
+            <div class="d-flex justify-content-between comment-wrapper">
+              <div>
+
+                <div class="mb-2">
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">
+                    All ACA
+                    Users
+                  </label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">
+                    Record
+                    Creator
+                  </label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">
+                    Licensed
+                    Professional
+                  </label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">Contact</label>
+                </div>
+                <div class="mb-2">
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">Owner</label>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <label>Status Date</label>
+                  <input type="text" class="text-box" formControlName="StatusDate">
+                </div>
+                <div class="my-2">
+                  <label>Due Date</label>
+                  <p>11/24/2012</p>
+                </div>
+                <div>
+                  <input type="checkbox" class="request-checkbox" /><label class="mt-2 mb-0">Display Comment in ACA</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="document" role="tabpanel">...def</div>
+    </div>
+  </div>
+</section>

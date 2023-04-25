@@ -1,0 +1,79 @@
+.dashboard-top-header {
+  background: #000000;
+  font-size: 12px;
+  padding: 10px;
+  color: #FFFFFF;
+  font-family: 'robotoregular';
+}
+
+.dashboard-main-header {
+  background-color: #3B9F6B;
+  color: #ffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.dashboard-main-header h2 {
+  font-family: 'robotobold';
+}
+
+.heading {
+  margin: 0;
+  padding: 10px;
+  font-size: 34px;
+  color: #ffff;
+}
+
+.case-abb {
+  font-size: 12px;
+  font-family: 'robotoregular';
+}
+
+.img-icon {
+  width: 18px;
+  height: 18px;
+  margin: 0px 10px;
+  vertical-align: middle;
+}
+
+.profile-img {
+  width: 35px;
+  height: 35px;
+}
+
+.menu-icon {
+  height: 100%;
+  background: #4D4D4D;
+  border: 0;
+  text-align: center;
+  width: 85px;
+}
+
+.menu-close-icon {
+  background: #4D4D4D;
+  height: 100%;
+  width: 285px;
+  border: 0;
+  text-align: right;
+  color: #ffffff;
+  font-size: 17px;
+  padding-right: 17px;
+  padding-top: 6px;
+
+  @media screen and (max-width:768px) {
+    width: 250px;
+  }
+}
+
+.menu-close-img {
+  width: 20px;
+  vertical-align: initial;
+  padding-right: 5px;
+}
+
+.forward-icon path {
+  fill: #fff;
+}

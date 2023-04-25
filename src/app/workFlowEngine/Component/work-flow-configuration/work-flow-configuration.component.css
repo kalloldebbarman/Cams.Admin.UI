@@ -1,0 +1,3 @@
+::ng-deep .workflow-designer-wrapper {
+    overflow-y: unset !important;
+ }

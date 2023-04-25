@@ -1,0 +1,26 @@
+
+<!--<li class="d-flex justify-content-between align-items-center">
+  {{rules.ruleName}}
+  <ul>
+    <app-validate-rule *ngFor="let rule of rules.rule" [rules]="rule"></app-validate-rule>-->
+    <!--<li *ngFor="let rule of rules.rulelist">
+
+    </li>-->
+  <!--</ul>
+  <img src="../../../../assets/images/expand-left.svg">
+</li>-->
+
+
+<li title="{{rules.expression}}">
+  <div class="d-flex justify-content-between align-items-center">
+    {{rules.ruleName}}
+    <button class="add-exp" (click)="ValidateRule(rules.ruleName,ruleIndex)">Validate</button>
+    <img src="../../../../assets/images/expand-left.svg">
+  </div>
+  <div>
+    <ul class="border-0">
+      <app-validate-rule *ngFor="let rule of rules.rule;let ruleIndex=index" [inputForms]="inputForms" [rules]="rule" [ruleIndex]="ruleIndex"></app-validate-rule>
+
+    </ul>
+  </div>
+</li>

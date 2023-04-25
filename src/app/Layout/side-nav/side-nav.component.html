@@ -1,0 +1,96 @@
+<div class="dashboard-container">
+  <div class="menu-container width-add overflow-auto" *ngIf="isExpanded">
+    <ul>
+      <li class="rules-mainClass nav-li" *ngFor="let n of menuList" (click)="select('main',  n.name);" [ngClass]="{active: isActive('main', n.name)}">
+        <a href="#" routerLink={{n.route}} class="cursor-pointer batch-class">
+          <img *ngIf="n.ImageSrc!=''" src={{n.ImageSrc}} class="img-icon">
+          <i *ngIf="n.ImageSrc==''" class={{n.iconClass}} aria-hidden="true"></i>
+          {{n.name}}
+          <i *ngIf="n.subMenu" class="arrow down"></i>
+        </a>
+        <ul class="rules-subclass" style="display:none;">
+          <li class="nav-li" *ngFor="let child of n.subMenu" [ngClass]="{active: isActive('sub',  child.label)}" (click)="select('sub', child.label, $event);">
+            <a href="#" routerLink={{child.route}}>
+              {{child.label}}
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+  <div class="menu-container" *ngIf="!isExpanded">
+    <ul>
+      <li class="nav-li">
+        <img src="../assets/images/house-img.png" class="img-icon">
+      </li>
+      <li class="nav-li">
+        <i class="fa fa-cogs mx-2" aria-hidden="true"></i>
+        <div class="drop-options">
+          <!-- <ul class="rules-subclass">
+            <li class="nav-li">
+              <a href="#" routerLink="/Form/create">
+                Roles
+              </a>
+            </li>
+            <li class="nav-li">
+              <a href="#" routerLink="/Form/create">
+                Page Access
+              </a>
+            </li>
+          </ul> -->
+        </div>
+      </li>
+      <li class="nav-li">
+        <img src="../assets/images/house-img.png" class="img-icon" (click)="toggleformClass()" title="Rule Flow">
+        <div class="drop-options" *ngIf="showDrop1">
+          <ul class="rules-subclass">
+            <li class="nav-li">
+              <a href="#">
+                Rule Flow
+              </a>
+            </li>
+            <li class="nav-li">
+              <a href="#">
+                Input Rule Parameter
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </li>
+      <li class="nav-li">
+        <img src="../assets/images/rule-img.png" class="img-icon" (click)="toggleformClassForm()">
+        <div class="drop-options" *ngIf="showDrop">
+          <ul class="rules-subclass">
+            <li class="nav-li">
+              <a href="#">
+                Create Form
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </li>
+      <li class="nav-li">
+        <img src="../assets/images/communication-icon.png" class="img-icon" title="Communication">
+
+
+      </li>
+      <li class="nav-li">
+
+        <img src="../../../assets/images/batch-process-icon.svg" class="img-icon" title="Batch Process">
+
+
+      </li>
+      <li class="nav-li">
+
+        <img src="../../../assets/images/batch-process-icon.svg" class="img-icon" title="Work Flow">
+
+
+      </li>
+    </ul>
+  </div>
+
+</div>

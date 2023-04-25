@@ -1,0 +1,127 @@
+
+<section class="content">
+
+  <div class="rule-button-container">
+    <h5 class="heading">Input Rule Parameters</h5>
+    <!--<label>Select RuleFlow</label>-->
+    <select class="btn btn-Secondry" (change)="onChangeRuleFlow($event.target.value)">
+      <option value="0">--Select--</option>
+      <option *ngFor="let rulelist of ruleflowlist" value="{{rulelist.ruleFlowId}}">{{rulelist.ruleFlowName}}</option>
+
+    </select>
+    <button class="btn progress-btn" (click)="NewInputRule()">New</button>
+    <button class="btn progress-btn" (click)="generateDownloadJsonUri()">Download</button>
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+    <button class="btn progress-btn" (click)="fileUpload.click()">Import</button>
+    <button class="btn progress-btn" (click)="AddInputRule()">Add</button>
+  </div>
+  <!--<div class="container-fluid">-->
+  <div class="container-fluid task-detail-wrapper">
+    <div class="task-details-left-panel" *ngIf="this.rulelist">
+      <ul>
+        <app-validate-rule *ngFor="let rules of this.rulelist;let ruleIndex=index" [inputForms]="inputForms" [rules]="rules" [ruleIndex]="ruleIndex"></app-validate-rule>
+        <!--<li class="d-flex justify-content-between align-items-center">
+          {{rules.ruleName}}
+          <ul>
+            <li *ngFor="let rules of rules.rulelist">
+
+            </li>
+          </ul>
+          <img src="../../../../assets/images/expand-left.svg">
+        </li>-->
+      </ul>
+    </div>
+
+    <div class="task-details-right-panel">
+      <form *ngIf="IsAddInputRule" [formGroup]="inputForms" id="input-rule-form" (ngSubmit)="onSubmit()">
+        <div class="row col-md-12" formArrayName="InputRuleParameter" *ngFor="let inpt of inputcontrol.controls; let i = index">
+          <div [formGroupName]="i" class="rule-flow-container">
+            <div class="row col-md-5 d-flex align-items-center">
+              <div class="col-md-10">
+                <label class="required"><b>Input Name</b></label>
+
+                <input type="text" class="form-control" placeholder="Rule" formControlName="InputName" />
+                <div *ngIf="inputcontrol.controls[i].get('InputName').invalid && (inputcontrol.controls[i].get('InputName').dirty || inputcontrol.controls[i].get('InputName').touched)" class="alert alert-danger">
+                  <div *ngIf="inputcontrol.controls[i].get('InputName').errors.required">
+                    Please enter Rule Name
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <img src="../../../../assets/images/delete-icon.svg" class="cursor-pointer" (click)="removeInput(i)">
+
+              </div>
+              <!--<div class="col-md-2">
+                <p></p>
+                <button title="Delete Input" class="btn btn-secondary" (click)="removeInput(i)"><span class="fa fa-trash"></span></button>
+              </div>-->
+            </div>
+            <div>
+              <h4 class="rule-flow-heading">Parameters</h4>
+              <button class="btn progress-btn" type="button" (click)="addNewparam(i)">Add</button><br />
+              <div formArrayName='Parameters'>
+                <div *ngFor="let parametercon of getparams(i).controls; let j = index">
+                  <div class="row responsive-column" [formGroupName]="j">
+                    <div class="col-lg-5  col-sm-12 mx-10">
+                      <div>
+                        <label class="required">Param Name</label>
+                        <input type="text" class="form-control" placeholder="Param key" formControlName="Name" />
+                        <div *ngIf="getparams(i).controls[j].get('Name').invalid && (getparams(i).controls[j].get('Name').dirty || getparams(i).controls[j].get('Name').touched)" class="alert alert-danger">
+                          <div *ngIf="getparams(i).controls[j].get('Name').errors.required">
+                            Please enter Param Name
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-5  col-sm-12  mx-10 row d-flex align-items-center responsive-column p-0">
+                      <div class="col-lg-10">
+                        <label class="required">Param Value</label>
+                        <textarea class="form-control" formControlName="Value" placeholder="param value"></textarea>
+                        <div *ngIf="getparams(i).controls[j].get('Value').invalid && (getparams(i).controls[j].get('Value').dirty || getparams(i).controls[j].get('Value').touched)" class="alert alert-danger">
+                          <div *ngIf="getparams(i).controls[j].get('Value').errors.required">
+                            Please enter Param Value
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-2">
+                        <img src="../../../../assets/images/delete-icon.svg" (click)="removeParam(i,j)"
+                             class="cursor-pointer">
+                        <!--<p></p>
+                        <button title="Delete parameter" class="btn btn-secondary" (click)="removeParam(i,j)"><span class="fa fa-trash"></span></button>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!--<button type="submit" class="btn progress-btn" *ngIf="IsAddInputRule">Validate</button>-->
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="json-container">
+    <div class="json-icon-wrapper" (click)="showJson()">
+      <img *ngIf="!showjson" src="../../../../assets/images/json-menu.svg" class="menu-json-icon">
+      <img *ngIf="showjson" src="../../../../assets/images/json-close-icon.svg" class="menu-json-icon close-json">
+      <img src="../../../../assets/images/json-icon.svg">
+    </div>
+    <div class="json-wrapper" *ngIf="showjson">
+      <div>
+        <pre>{{ inputForms.value | json }}</pre>
+      </div>
+    </div>
+  </div>
+  <!--<div class="col-md-4">
+          <p><b>Input Rules JSON</b></p>
+          <pre>{{ inputForms.value | json }}</pre>
+        </div>
+      </div>
+
+
+    </div>
+  </div>-->
+</section>

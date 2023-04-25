@@ -1,0 +1,61 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #e3f2fd"
+>
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">DemoScheduler</a>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <button type="button" class="btn btn-outline-primary mx-1">
+          Start
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary mx-1"
+          (click)="Addjob()"
+        >
+          <span class="fa fa-plus"></span>
+        </button>
+        <!--<a href="#" class="nav-item nav-link" (click)="Addjob()">+</a>-->
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Trigger</th>
+          <th>Schedule</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Previous Fire</th>
+          <th>Next Fire Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p class="fw-normal mb-1">Trigger1</p>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">Schedule1</p>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">1.13.23</p>
+          </td>
+          <td><p class="fw-normal mb-1">none</p></td>
+          <td>
+            <p class="fw-normal mb-1">12.31.22</p>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">2.01.23</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-schedule-job *ngIf="isAddJob"></app-schedule-job>

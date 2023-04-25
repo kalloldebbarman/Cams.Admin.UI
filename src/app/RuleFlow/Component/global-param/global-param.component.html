@@ -1,0 +1,20 @@
+
+<form [formGroup]="Globalsection">
+  <table>
+
+    <thead *ngIf="GlobalIndex==0">
+      <tr><th><label>Scoped Param Name</label></th><th><label>Expression</label></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" class="text-box" formControlName="Name" /></td>
+        <td><input type="text" class="text-box" formControlName="Expression" /></td>
+        <td>
+          <img src="../../../../assets/images/delete-icon.svg" (click)="removeGlobalPramSection()" alt="remove-icon"
+               class="remove cursor-pointer">
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</form>

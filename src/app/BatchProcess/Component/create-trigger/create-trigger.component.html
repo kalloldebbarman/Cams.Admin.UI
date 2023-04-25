@@ -1,0 +1,297 @@
+<form [formGroup]="TriggerForms" (ngSubmit)="onSubmit()">
+  <section class="content">
+    <h5 class="heading">Add Trigger</h5>
+    <h5 class="heading">Job Data Map</h5>
+    <div class="row">
+      <div class="col-2">
+        <input type="radio" id="Type" value="cron" formControlName="Type" (change)="triggerTypeChange($event)" />
+        <label class="mx-2 vertical-middle">Cron</label>
+      </div>
+      <div class="col-2">
+        <input type="radio" id="Type" value="simple" formControlName="Type" (change)="triggerTypeChange($event)" />
+        <label class="mx-2 vertical-middle">Simple</label>
+      </div>
+      <div class="col-2">
+        <input type="radio" id="Type" value="calender" formControlName="Type" (change)="triggerTypeChange($event)" />
+        <label class="mx-2 vertical-middle">Calendar Interval</label>
+      </div>
+      <div class="col-2">
+        <input type="radio" id="Type" value="daily" formControlName="Type" (change)="triggerTypeChange($event)" />
+        <label class="mx-2 vertical-middle">Daily time Interval</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Job</label>
+        <select class="text-box" formControlName="Job">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.jobs"
+                  [value]="data.JobName">
+            {{ data.JobName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Trigger Name</label>
+        <input type="text" class="text-box" formControlName="TriggerName"/>
+      </div>
+      <div class="col-4">
+        <label>Trigger Group</label>
+        <select class="text-box" formControlName="TriggerGroup">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.triggerGroups"
+                  [value]="data.TriggerGroupName">
+            {{ data.TriggerGroupName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-12">
+        <label>Description</label>
+        <textarea class="text-box" formControlName="Description"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Start Date(UTC)</label>
+        <input type="datetime-local" class="text-box" formControlName="StartTimeUtc"/>
+      </div>
+      <div class="col-4">
+        <label>End Date(UTC)</label>
+        <input type="datetime-local" class="text-box" formControlName="EndTimeUtc"/>
+      </div>
+      <div>
+        <label>Calendar</label>
+        <select class="text-box" formControlName="CalendarName">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.calendars"
+                  [value]="data.CalendarName">
+            {{ data.CalendarName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Misfire Instruction</label>
+        <select class="text-box" formControlName="MisfireInstruction">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.misfireInstructions"
+                  [value]="data.MisfireInstructions">
+            {{ data.MisfireInstructions }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Priority</label>
+        <select class="text-box" formControlName="Priority">
+          <option value="0">--Select--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+    </div>
+  </section>
+  <section class="content" *ngIf="isSimple" >
+    <h5 class="heading">Simple Trigger Properties</h5>
+    <div class="row mb-4" formGroupName ="Simple">
+      <div class="col-4">
+        <div class="mb-2">
+          <label>Repeat Interval</label>
+          <input type="text" class="text-box" formControlName="RepeatInterval"/>
+        </div>
+        <input type="checkbox" class="request-checkbox" formControlName="RepeatForever"/><label class="mt-2 mb-0">Repeat Forever</label>
+      </div>
+      <div class="col-4">
+        <label>Unit</label>
+        <select class="text-box" formControlName="RepeatUnit">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeUnit"
+                  [value]="data.Unit">
+            {{ data.Unit }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Repeat Count</label>
+        <input type="text" class="text-box" formControlName="RepeatCount"/>
+      </div>
+    </div>
+  </section>
+  <section class="content" *ngIf="isCron">
+    <h5 class="heading">Cron Trigger Properties</h5>
+    <div class="row mb-4" formGroupName ="Cron">
+      <div class="col-4">
+        <div class="mb-2">
+          <label>Cron Expression</label>
+          <input type="text" class="text-box" formControlName="Expression"/>
+        </div>
+      </div>
+      <div class="col-4">
+        <label>Time Zone</label>
+        <select class="text-box" formControlName="TimeZone">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeZones"
+                  [value]="data.TimeZone">
+            {{ data.TimeZone }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </section>
+  <section class="content" *ngIf="isCalendar">
+    <h5 class="heading">Calendar Interval Trigger Properties</h5>
+    <div class="row mb-4" formGroupName ="Calendar">
+      <div class="col-4">
+        <div class="mb-2">
+          <label>Repeat Interval</label>
+          <input type="text" class="text-box" formControlName="RepeatInterval"/>
+        </div>
+      </div>
+      <div class="col-4">
+        <label>Unit</label>
+        <select class="text-box" formControlName="RepeatUnit">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeUnit"
+                  [value]="data.Unit">
+            {{ data.Unit }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Time Zone</label>
+        <select class="text-box" formControlName="TimeZone">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeZones"
+                  [value]="data.TimeZone">
+            {{ data.TimeZone }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <input type="checkbox" class="request-checkbox" formControlName="PreserveHourAcrossDst"/><label class="mt-2 mb-0">Preserve Hour of Day Across Daylight Savings</label>
+        <input type="checkbox" class="request-checkbox" formControlName="SkipDayIfHourDoesNotExist"/><label class="mt-2 mb-0">Skip Day If Hour Does Not Exist</label>
+      </div>
+    </div>
+  </section>
+  <section class="content" *ngIf="isDaily">
+    <h5 class="heading">Daily Time Interval Trigger Properties</h5>
+    <div class="row mb-4" formGroupName ="Daily">
+      <div class="col-4">
+        <div class="mb-2">
+          <label>Repeat Interval</label>
+          <input type="text" class="text-box" formControlName="RepeatInterval"/>
+        </div>
+        <input type="checkbox" class="request-checkbox" formControlName="RepeatForever"/><label class="mt-2 mb-0">Repeat Forever</label>
+      </div>
+      <div class="col-4">
+        <label>Unit</label>
+        <select class="text-box" formControlName="RepeatUnit">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeUnit"
+                  [value]="data.Unit">
+            {{ data.Unit }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Time Zone</label>
+        <select class="text-box" formControlName="TimeZone">
+          <option value="0">--Select--</option>
+          <option *ngFor="let data of masterData.timeZones"
+                  [value]="data.TimeZone">
+            {{ data.TimeZone }}
+          </option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Repeat Count</label>
+        <input type="text" class="text-box" formControlName="RepeatCount"/>
+      </div>
+      <div class="col-4">
+        <label>Start Time of Day</label>
+        <input type="time" class="text-box" formControlName="StartTime"/>
+      </div>
+      <div class="col-4">
+        <label>End Time of Day</label>
+        <input type="time" class="text-box" formControlName="EndTime"/>
+      </div>
+      <label>Days of Week</label>
+      <div class="row">
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Monday"/><label class="mt-2 mb-0">Monday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Tuesday"/><label class="mt-2 mb-0">Tuesday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Wednesday"/><label class="mt-2 mb-0">Wednesday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Thursday"/><label class="mt-2 mb-0">Thursday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Friday"/><label class="mt-2 mb-0">Friday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Saturday"/><label class="mt-2 mb-0">Saturday</label>
+        </div>
+        <div class="col-3">
+          <input type="checkbox" class="request-checkbox" formControlName="Sunday"/><label class="mt-2 mb-0">Sunday</label>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <h5 class="heading mt-5">Job Data Map</h5>
+    <div class="rule-flow-container" formArrayName="jobParameters">
+      <div *ngFor="let parametercon of inputcontrol.controls; let j = index">
+        <div class="row" [formGroupName]="j">
+          <div class="form-group col-4">
+            <label for="parameterName">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="parameterName"
+                   formControlName="parameterName" />
+          </div>
+          <div class="form-group col-4">
+            <label>Value</label>
+            <input type="text"
+                   class="form-control"
+                   id="value"
+                   formControlName="value" />
+          </div>
+          <div class="form-group row col-4">
+            <div class="col-8">
+              <label>Type</label>
+              <select id="type" class="text-box" formControlName="paramTypeId">
+                <option value="0">--Select--</option>
+                <option *ngFor="let data of masterData.types"
+                        [value]="data.TypeId">
+                  {{ data.TypeName }}
+                </option>
+              </select>
+            </div>
+            <div class="col-2 text-center">
+              <label>Delete</label>
+              <div class="text-center">
+                <img src="../../../../assets/images/delete-icon.svg"
+                     class="text-center" (click)="removeParam(0,j)"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn rule-btn" type="button" (click)="addNewJobParam(0)">
+      +&nbsp;Add Param
+    </button>
+  </section>
+  <button type="submit" class="btn progress-btn">Save</button>
+</form>

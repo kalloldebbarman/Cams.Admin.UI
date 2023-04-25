@@ -1,0 +1,63 @@
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-jobConfig" href="#">Job Group Configuration</a>
+  </nav>
+  <!-- Navbar -->
+</header>
+<br />
+
+<div class="form-group row">
+  <label for="jobGroup" class="col-form-label col-sm-2">Job Group: </label>
+  <div class="col-sm-10">
+    <select
+      [(ngModel)]="jobGroup"
+      name="jobGroup"
+      id="jobGroup"
+      class="form-control"
+    >
+      <option>Not specified(Use default)</option>
+      <option>Use existing group</option>
+      <option>Define new group</option>
+    </select>
+  </div>
+</div>
+<br />
+<br />
+
+<div class="form-group row">
+  <label for="existingJobGroup" class="col-form-label col-sm-2"
+    >Existing Job Group:
+  </label>
+  <div class="col-sm-10">
+    <select
+      [(ngModel)]="existingJobGroup"
+      name="existingJobGroup"
+      id="existingJobGroup"
+      class="form-control"
+    >
+      <option>--Select Job Group--</option>
+      <option>Maintenance</option>
+      <option>Domain</option>
+      <option>Reporting</option>
+      <option>Default</option>
+    </select>
+  </div>
+</div>
+<br />
+
+<div class="form-group row">
+  <label for="newJobGroup" class="col-form-label col-sm-2">
+    New Job Group:
+  </label>
+  <div class="col-sm-10">
+    <input type="text" formControlName="newJobGroup" class="form-control" />
+  </div>
+</div>
+<br />
+<footer class="bg-primary text-white text-center text-lg-start">
+  <div style="background-color: rgba(50, 35, 35, 0)">
+    <button type="cancel" class="btn btn-primary mx-1">Cancel</button>
+    <button type="next" class="btn btn-success mx-1 pull-right">Next-></button>
+  </div>
+</footer>

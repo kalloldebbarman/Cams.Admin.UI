@@ -1,0 +1,143 @@
+<form [formGroup]="section">
+  <div
+    style="
+      border: 1px solid red;
+      margin: 10px 20px;
+      padding: 10px;
+      background: hwb(210 78% 20%);
+    "
+  >
+    <p>
+      <strong>Batch Job's Parameter-Add</strong>
+    </p>
+
+    <table>
+      <tr>
+        <td>
+          <label for="batchJobName">Batch Job Name: </label>
+        </td>
+        <td>
+          <input class="form-control" value="Job1" disabled />
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <label for="parameterName" class="col-form-label"
+            >Parameter Name:
+          </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            formControlName="parameterName"
+            class="form-control"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="description" class="col-form-label">Description: </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            formControlName="description"
+            class="form-control"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="defaultValue" class="col-form-label"
+            >Default Value:
+          </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            formControlName="defaultValue"
+            class="form-control"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="dataType" class="col-form-label">Data Type: </label>
+        </td>
+        <td>
+          <select
+            [(ngModel)]="workFlow"
+            name="workFlow"
+            id="workFlow"
+            class="form-control"
+          >
+            <option>Char</option>
+            <option>Text</option>
+            <option>Int</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="displayOrder" class="col-form-label"
+            >Display Order:
+          </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            formControlName="displayOrder"
+            class="form-control"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <label for="status" class="col-form-label">Required Flag: </label>
+    <div class="form-check">
+      <input
+        mdbRadio
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault1"
+        id="flexRadioDefault2"
+      />
+      <label class="form-check-label" for="flexRadioDefault1"> Yes </label>
+      <br />
+      <input
+        mdbRadio
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault3"
+        id="flexRadioDefault4"
+      />
+      <label class="form-check-label" for="flexRadioDefault3"> No </label>
+    </div>
+
+    <label for="status">Status: </label>
+    <div class="form-check">
+      <input
+        mdbRadio
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault5"
+        id="flexRadioDefault6"
+      />
+      <label class="form-check-label" for="flexRadioDefault5"> Enable </label>
+      <br />
+      <input
+        mdbRadio
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault7"
+        id="flexRadioDefault8"
+      />
+      <label class="form-check-label" for="flexRadioDefault7"> Disable </label>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success mx-1">Submit</button>
+    <button type="cancel" class="btn btn-danger mx-1">Cancel</button>
+  </div>
+</form>

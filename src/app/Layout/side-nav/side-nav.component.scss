@@ -1,0 +1,144 @@
+.img-icon {
+  width: 18px;
+  height: 18px;
+  margin: 0px 10px;
+  vertical-align: middle;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+/* ul {
+  padding-left: 1.5rem;
+} */
+.nav-li {
+  position: relative;
+  cursor: pointer;
+}
+
+.drop-options {
+  background: #fff;
+  color: #4d4d4d;
+  position: absolute;
+  left: 38px;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 4px;
+  border: 1px solid #00000029;
+  top: 30px;
+}
+
+.drop-options .rules-subclass {
+  padding: 10px 10px 10px 20px;
+  width: 200px;
+}
+
+.drop-options .rules-subclass li a {
+  color: #4d4d4d;
+}
+
+.drop-options .rules-subclass .nav-li {
+  padding: 0;
+}
+
+.menu-container {
+  background: #4d4d4d;
+  color: #ffff;
+  height: 84vh;
+  transition: width 2s;
+  width: 85px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #4d4d4d;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+.width-add {
+  width: 285px;
+
+  @media screen and (max-width:768px) {
+    width: 250px;
+  }
+}
+
+ul {
+  padding: 0px 17px 3px 15px;
+}
+
+.nav-li {
+  list-style-type: none;
+  text-align: left;
+  padding-top: 20px;
+  padding: 15px 10px 15px 5px;
+  font-size: 15px;
+  font-family: 'robotoregular';
+}
+/* li:hover{
+    background: #fff;
+    border-radius: 5px;
+    color: black;
+} */
+.arrow {
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px;
+  margin: 0px 0px 3px 45px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  float: right;
+
+}
+
+.rules-subclass li {
+  list-style-type: circle;
+  list-style-position: inside;
+  padding: 15px 2px 3px 32px;
+  clear: both;
+}
+
+.rules-subclass li a {
+  list-style-type: circle;
+  list-style-position: inside;
+  text-decoration: none;
+  color: #fff;
+}
+
+.rules-subclass li a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.rules-mainClass a {
+  list-style-type: circle;
+  list-style-position: inside;
+  text-decoration: none;
+  color: #fff;
+}
+
+.rules-mainClass a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.rules-subclass li:last-child {
+  padding-bottom: 0;
+}
+.active ul {
+  display: block !important;
+}
+.drop-options .rules-subclass .nav-li {
+  padding: 0;
+}

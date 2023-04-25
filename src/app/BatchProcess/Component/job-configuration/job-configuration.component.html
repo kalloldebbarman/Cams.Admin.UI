@@ -1,0 +1,185 @@
+<form [formGroup]="CreateJobForm" *ngIf="masterdata">
+  <section class="content mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="heading">Job Configuration</h5>
+      <div class="position-relative">
+        <button class="reset-btn">Discard Changes</button>
+        <button
+          class="progress-btn border-0 drop-btn"
+          (click)="showDropdown($event)"
+        >
+          Save
+          <img
+            src="../../../../assets/images/expand-icon.svg"
+            class="expand-icon"
+          />
+        </button>
+        <div
+          class="dropdown-content"
+          *ngIf="showDropDownOption"
+          (click)="$event.stopPropagation()"
+        >
+          <a (click)="SaveAndRoute()"
+            ><i class="fa fa-play mx-2 green-icon"></i>Save & Add trigger</a
+          >
+          <a href="#"
+            ><i class="fa fa-play mx-2 green-icon"></i>Save & trigger
+            Immediately</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="rule-flow-container">
+      <div class="row mb-4">
+        <div class="col-4">
+          <label>Group</label>
+          <div class="d-flex">
+            <select class="text-box" formControlName="Group">
+              <option value="0">--Select--</option>
+              <option
+                *ngFor="let job of masterdata.jobGroup"
+                [value]="job.jobGroupName"
+              >
+                {{ job.jobGroupName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4" *ngIf="showNewGroup">
+          <label>New Job Group</label>
+          <input type="text" class="text-box" formControlName="Group" />
+        </div>
+        <div
+          *ngIf="!showNewGroup"
+          class="col-2 progress-btn add-icon align-self-center"
+          (click)="addNewGroup()"
+        >
+          +
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-flow-container">
+      <div class="row mb-4">
+        <div class="col-6">
+          <label>Name</label>
+          <input type="text" class="text-box" formControlName="jobName" />
+        </div>
+
+        <div class="col-6">
+          <label>Class</label>
+          <select class="text-box" formControlName="Type">
+            <option value="0">--Select--</option>
+            <option
+              *ngFor="let job of masterdata.classType"
+              [value]="job.classTypeName"
+            >
+              {{ job.classTypeName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <label>Description</label>
+          <textarea
+            class="text-box"
+            id="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-4">
+          <div class="mb-2">
+            <label>Server</label>
+            <select id="server" class="text-box" formControlName="serverName">
+              <option value="0">--Select--</option>
+              <option
+                *ngFor="let job of masterdata.server"
+                [value]="job.serverName"
+              >
+                {{ job.serverName }}
+              </option>
+            </select>
+          </div>
+          <input
+            type="checkbox"
+            class="request-checkbox"
+            id="recoveryCheck"
+            formControlName="recovery"
+          /><label class="mt-2 mb-0">Requests Recovery</label>
+        </div>
+        <div class="col-4">
+          <label>Continuation of</label>
+          <select
+            id="continuationOf"
+            class="text-box"
+            formControlName="continuationOf"
+          >
+            <option value="0">--Select--</option>
+            <option
+              *ngFor="let job of masterdata.continuationOf"
+              [value]="job.continuationOf"
+            >
+              {{ job.continuationOf }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <h5 class="heading mt-5">Job Data Map</h5>
+    <div class="rule-flow-container" formArrayName="jobParameters">
+      <div *ngFor="let parametercon of inputcontrol.controls; let j = index">
+        <div class="row" [formGroupName]="j">
+          <div class="form-group col-4">
+            <label for="parameterName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="parameterName"
+              formControlName="Name"
+            />
+          </div>
+          <div class="form-group col-4">
+            <label>Value</label>
+            <input
+              type="text"
+              class="form-control"
+              id="value"
+              formControlName="value"
+            />
+          </div>
+          <div class="form-group row col-4">
+            <div class="col-8">
+              <label>Type</label>
+              <select id="type" class="text-box" formControlName="SelectedType">
+                <option value="0">--Select--</option>
+                <option
+                  *ngFor="let job of masterdata.paramType"
+                  [value]="job.paramTypeName"
+                >
+                  {{ job.paramTypeName }}
+                </option>
+              </select>
+            </div>
+            <div class="col-2 text-center">
+              <label>Delete</label>
+              <div class="text-center">
+                <img
+                  src="../../../../assets/images/delete-icon.svg"
+                  class="text-center"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn rule-btn" (click)="addNewJobParam(0)">
+      +&nbsp;Add Param
+    </button>
+  </section>
+</form>

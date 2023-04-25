@@ -1,0 +1,193 @@
+
+<section class="content">
+  <h5 class="heading">Communication</h5>
+
+  <form [formGroup]="CommForms" (ngSubmit)="onSubmit()">
+    <div class="communication-wrapper mb-2">
+      <div class="communication-section">
+        <label class="required">Template Name</label>
+        <input type="text" class="text-box" formControlName="templateName" />
+        <div *ngIf="CommForms.controls['templateName'].invalid && (CommForms.controls['templateName'].dirty || CommForms.controls['templateName'].touched)" class="alert alert-danger">
+          <div *ngIf="CommForms.controls['templateName'].errors.required">
+            Template Name is required
+          </div>
+        </div>
+      </div>
+      <div class="communication-section">
+        <label class="required">Template Subject</label>
+        <input type="text" class="text-box" formControlName="templateSubject" />
+        <div *ngIf="CommForms.controls['templateSubject'].invalid && (CommForms.controls['templateSubject'].dirty || CommForms.controls['templateSubject'].touched)" class="alert alert-danger">
+          <div *ngIf="CommForms.controls['templateSubject'].errors.required">
+            Template Subject is required
+          </div>
+        </div>
+      </div>
+      <div class="communication-section">
+        <label class="required">Communication Type</label>
+        <select class="text-box" formControlName="communicationTypeId">
+          <option value="0">--Select--</option>
+          <option *ngFor="let com of masterdata.communicationType" [selected]="com.communicationTypeId === this.communicationTypeId" [value]="com.communicationTypeId">{{com.communicationTypeName}}</option>
+
+        </select>
+        <div *ngIf="CommForms.controls['communicationTypeId'].invalid && (CommForms.controls['communicationTypeId'].dirty || CommForms.controls['communicationTypeId'].touched)" class="alert alert-danger">
+          <div *ngIf="CommForms.controls['communicationTypeId'].errors.required">
+            Select a valid Communication Type
+          </div>
+        </div>
+      </div>
+      <div class="communication-section">
+        <label class="required">Notification Type</label>
+        <select class="text-box" formControlName="notificationTypeId">
+          <option [value]="0">--Select--</option>
+          <option *ngFor="let noti of masterdata.notificationType" [selected]="noti.notificationTypeId == notificationTypeId" value="{{noti.notificationTypeId}}">{{noti.notificationTypeName}}</option>
+
+        </select>
+        <div *ngIf="CommForms.controls['notificationTypeId'].invalid && (CommForms.controls['notificationTypeId'].dirty || CommForms.controls['notificationTypeId'].touched)" class="alert alert-danger">
+          <div *ngIf="CommForms.controls['notificationTypeId'].errors.required">
+            Select a valid Notification Type
+          </div>
+        </div>
+      </div>
+      <div class="communication-section">
+        <label>Recipient Group</label>
+        <select class="text-box" formControlName="recipientToGroupId">
+          <option value="0" selected="selected">--Select--</option>
+          <option *ngFor="let rec of masterdata.recipientGroup" [selected]="rec.recipientGroupId == recipientToGroupId" value="{{rec.recipientGroupId}}">{{rec.recipientGroupName}}</option>
+
+        </select>
+      </div>
+      <div class="communication-section">
+        <label>Cc Group</label>
+        <select class="text-box" formControlName="recipientCcGroupId">
+          <option value="0" selected="selected">--Select--</option>
+          <option *ngFor="let rec of masterdata.recipientGroup" [selected]="rec.recipientGroupId == recipientCcGroupId" value="{{rec.recipientGroupId}}">{{rec.recipientGroupName}}</option>
+
+        </select>
+      </div>
+      <div class="communication-section">
+        <label>Bcc Group</label>
+        <select class="text-box" formControlName="recipientBccGroupId">
+          <option value="0" selected="selected">--Select--</option>
+          <option *ngFor="let rec of masterdata.recipientGroup" [selected]="rec.recipientGroupId == recipientBccGroupId" value="{{rec.recipientGroupId}}">{{rec.recipientGroupName}}</option>
+
+        </select>
+      </div>
+      <div class="communication-section">
+        <label>Email Importance</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="importanceId" id="importanceId" value="1">
+          <label class="form-check-label">
+            Normal
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="importanceId" id="importanceId" value="2">
+          <label class="form-check-label">
+            Low
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="importanceId" id="importanceId" value="3">
+          <label class="form-check-label">
+            High
+          </label>
+        </div>
+      </div>
+    </div>
+    <div>
+
+      <label>
+        Template Message
+        <span class="required"></span>
+        <img src="../../../assets/images/file-upload-icon.svg" (click)="fileUpload.click()" class="cursor-pointer img-icon">
+        <img src="../../../assets/images/download-icon.svg" (click)="generateDownloadUri()" class="cursor-pointer img-icon">
+      </label>
+      <div class="communication-description">
+        <ckeditor [editor]="Editor" formControlName="templateMessage" id="description" name="description"></ckeditor>
+        <div *ngIf="CommForms.controls['templateMessage'].invalid && (CommForms.controls['templateMessage'].dirty || CommForms.controls['templateMessage'].touched)" class="alert alert-danger">
+          <div *ngIf="CommForms.controls['templateMessage'].errors.required">
+            Template Message is required
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="CommForms.invalid" class="btn progress-btn">Save</button>
+
+    </div>
+  </form>
+  <div class="communication-section mt-2">
+    <input type="text" class="text-box" placeholder="Search" #search (change)="onSearchChange(search.value)">
+  </div>
+  <div class="overflowX">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Communication Type</th>
+          <th>Notification Type</th>
+          <th>Recipient Group</th>
+          <th>Cc Group</th>
+          <th>Bcc Group</th>
+          <th>Email Importance</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="templates">
+        <tr *ngFor="let temp of templates.templates | paginate: {id: 'server', itemsPerPage: rowsPerPage, currentPage: p , totalItems: total}">
+          <td>{{temp.templateName}}</td>
+          <td>{{temp.templateSubject}}</td>
+          <td>{{temp.communicationTypeName}}</td>
+          <td>{{temp.notificationTypeName}}</td>
+          <td>{{temp.recipientGroupName}}</td>
+          <td>{{temp.recipientCcGroupName}}</td>
+          <td>{{temp.recipientBccGroupName}}</td>
+          <td>{{temp.importanceName}}</td>
+          <td>
+            <img src="../../../assets/images/edit-icon.svg"  class="edit-icon img-icon" (click)="EditTemplate(temp.templateId)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img src="../../../assets/images/delete-icon.svg"  class="delete-icon img-icon" (click)="DeleteTemplate(temp.templateId)">
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <div *ngIf="templates; else nodataview" class="pagination">
+      <div class="input-group input-group-sm ">
+        <label class="col-form-label col-form-label-sm pagination-content">Rows Per Page</label>
+        <div class="input-group-append">
+          <select class="selectpicker show-menu-arrow col-form-label col-form-label-sm pagination-select" #records (change)="onRecordPerPageChange(records.value)">
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+          </select>
+        </div>
+      </div>
+      <pagination-controls (pageChange)="renderPage($event)" id="server"></pagination-controls>
+    </div>
+    <ng-template #nodataview>
+      <img src="../../../assets/images/close-red-icon.svg" class="close-red-icon" />
+      <div class="no-data-text">
+        <p>Nothing to see here.</p>
+      </div>
+      <hr />
+    </ng-template>
+    <p>
+      <input type="file" class="file-input" (change)="onFileSelected($event)" accept=".html" #fileUpload>
+    </p>
+</section>
+<div class="modal" id="exampleModal" tabindex="-1" [ngStyle]="{ display: displayStyle }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <img src="../../../../assets/images/warning-img.svg" class="warning-img">
+      </div>
+      <p class="mb-0 pt-2"> {{ConfirmText}}</p>
+      <div class="modal-footer">
+        <button *ngIf="IsDelete" type="button" class="btn progress-btn" data-bs-dismiss="modal" (click)="ConfirmDeleteTemplate()">Yes</button>
+        <button  *ngIf="!IsDelete" type="button" class="btn progress-btn" data-bs-dismiss="modal" (click)="ConfirmEditTemplate()">
+          Yes</button>
+          <button type="button" class="btn reset-btn" data-bs-dismiss="modal" (click)="closePopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<section class="content">
+  <h5 class="heading">Case Review</h5>
+
+  <form [formGroup]="CaseReview" (ngSubmit)="onSubmit()">
+    <!--<h5 class="heading">Search by</h5>-->
+    <div class="communication-wrapper mb-2">
+      <div class="communication-section">
+        <label class="required">Case Id</label>
+        <input type="text" class="text-box" formControlName="CaseId" />
+      </div>
+      <div class="communication-section">
+        <label class="required">First Name</label>
+        <input type="text" class="text-box" formControlName="FirstName" />
+      </div>
+      <div class="communication-section">
+        <label class="required">Last Name</label>
+        <input type="text" class="text-box" formControlName="LastName" />
+      </div>
+      <div class="communication-section">
+        <label class="required">Address</label>
+        <input type="text" class="text-box" formControlName="Address" />
+      </div>
+      <div class="communication-section">
+        <label class="required">Amount</label>
+        <input type="text" class="text-box" formControlName="Amount" />
+      </div>
+    </div>
+    <div>
+      <button type="submit" [disabled]="CaseReview.invalid" class="btn progress-btn">Submit</button>
+    </div>
+  </form>
+  <div class="overflowX table-wrap">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th>CaseId</th>
+          <th>Task Name</th>
+          <th>Received On</th>
+          <th>Assigned To</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>123</td>
+          <td>Case for Review</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>345</td>
+          <td>Task2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
